@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package portdomainsvc;
+
+message AddPortReq {
+    string portCode = 1;
+    string name = 2;
+    string city = 3;
+    string latitude = 4;
+    string longitude = 5;
+    string province = 6;
+    string timezone = 7;
+    string code = 8;
+}
+
+message EmptyReply {}
+
+service PortDomainService {
+  rpc AddPort (AddPortReq) returns (EmptyReply);
+}
