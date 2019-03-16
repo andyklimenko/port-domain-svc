@@ -1,6 +1,5 @@
 FROM golang:latest
 
-# Install Go
 RUN \
     apt-get update && \
     apt-get install -y postgresql
@@ -14,8 +13,7 @@ ENV DB_PORT 5432
 ENV SVC_PORT :50051
 ENV SRC_DIR $GOPATH/src/port-domain-svc
 
-# Define working directory.
-WORKDIR $GOPATH
+WORKDIR $SRC_DIR
 
 COPY . $SRC_DIR
-RUN cd $SRC_DIR; make build
+RUN make build
