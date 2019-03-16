@@ -12,6 +12,7 @@ var migrations = migrate.MemoryMigrationSource{
 			Up: []string{
 				`CREATE TABLE ports (
 					port_id VARCHAR(50) PRIMARY KEY,
+					name VARCHAR(50) NOT NULL,
 					city VARCHAR(50) NOT NULL,
 					latitude VARCHAR(50) NOT NULL,
 					longitude VARCHAR(50) NOT NULL,
