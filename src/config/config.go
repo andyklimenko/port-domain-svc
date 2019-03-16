@@ -15,10 +15,9 @@ func (c *Config) Load() {
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
 	viper.AutomaticEnv()
-
 	c.Pg.Load()
-	viper.SetDefault("Port", ":50051")
-	c.Port = viper.GetString("Port")
+	viper.SetDefault("svc.port", ":50051")
+	c.Port = viper.GetString("svc.port")
 }
 
 type Postgres struct {
