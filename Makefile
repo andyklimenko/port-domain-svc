@@ -5,6 +5,7 @@ GOCLEAN=$(GOCMD) clean
 GOTEST=$(GOCMD) test
 GOFMT=$(GOCMD)fmt
 GOVET=$(GOCMD) vet
+DOCKERBUILD=docker build
 
 BINARY_NAME=port-domain-svc
 
@@ -33,6 +34,9 @@ deps:
 
 vet:
 	$(GOVET) ./...
+
+docker:
+	$(DOCKERBUILD) -t port-domain-svc .
 
 grpc:
 	protoc --go_out=plugins=grpc:./src ./proto/port-domain-svc.proto

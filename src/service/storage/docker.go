@@ -3,8 +3,8 @@ package storage
 import (
 	"github.com/fortytw2/dockertest"
 	_ "github.com/lib/pq"
-	"ports/port-domain-svc/src/config"
-	"ports/port-domain-svc/src/service/storage/postgres"
+	"port-domain-svc/src/config"
+	"port-domain-svc/src/service/storage/postgres"
 )
 
 func NewDockerStorage() (*Storage, func(), error) {
