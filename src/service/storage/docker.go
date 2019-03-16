@@ -1,14 +1,21 @@
 package storage
 
 import (
-	"database/sql"
 	"github.com/fortytw2/dockertest"
 	_ "github.com/lib/pq"
+	"ports/port-domain-svc/src/config"
+	"ports/port-domain-svc/src/service/storage/postgres"
 )
 
 func NewDockerStorage() (*Storage, func(), error) {
+	cfg := config.Postgres{
+		User:     "postgres",
+		Password: "postgres",
+		DbName:   "postgres",
+	}
 	container, runErr := dockertest.RunContainer("postgres:alpine", "5432", func(addr string) error {
-		db, err := sql.Open("postgres", "postgres://postgres:postgres@"+addr+"?sslmode=disable")
+		cfg.Host = addr
+		db, err := postgres.Connect(cfg)
 		if err != nil {
 			return err
 		}
@@ -19,7 +26,7 @@ func NewDockerStorage() (*Storage, func(), error) {
 		return nil, func() {}, runErr
 	}
 
-	db, openErr := sql.Open("postgres", "postgres://postgres:postgres@"+container.Addr+"?sslmode=disable")
+	db, openErr := postgres.Connect(cfg)
 	if openErr != nil {
 		return nil, func() {}, openErr
 	}
@@ -29,7 +36,12 @@ func NewDockerStorage() (*Storage, func(), error) {
 		return nil, func() {}, migrateErr
 	}
 
-	s := NewStorage(db)
+	s, newStorageErr := NewStorage(cfg)
+	if newStorageErr != nil {
+		db.Close()
+		return nil, func() {}, newStorageErr
+	}
+
 	return s, func() {
 		s.Close()
 		container.Shutdown()

@@ -3,7 +3,9 @@ package postgres
 import (
 	"context"
 	"database/sql"
+	"fmt"
 	"github.com/lib/pq"
+	"ports/port-domain-svc/src/config"
 	"ports/port-domain-svc/src/service/model"
 )
 
@@ -11,8 +13,17 @@ type postgres struct {
 	db *sql.DB
 }
 
-func NewPostgres(db *sql.DB) *postgres {
-	return &postgres{db: db}
+func NewPostgres(cfg config.Postgres) (*postgres, error) {
+	db, dbErr := Connect(cfg)
+	if dbErr != nil {
+		return nil, dbErr
+	}
+	return &postgres{db: db}, nil
+}
+
+func Connect(cfg config.Postgres) (*sql.DB, error) {
+	url := fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=disable", cfg.User, cfg.Password, cfg.Host, cfg.DbName)
+	return sql.Open("postgres", url)
 }
 
 func (p *postgres) GetPort(ctx context.Context, portCode string) (model.Port, error) {

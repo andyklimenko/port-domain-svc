@@ -35,4 +35,4 @@ vet:
 	$(GOVET) ./...
 
 grpc:
-	protoc --go_out=./src ./proto/port-domain-svc.proto
+	protoc --go_out=plugins=grpc:./src ./proto/port-domain-svc.proto

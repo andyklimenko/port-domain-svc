@@ -9,8 +9,9 @@ message Port {
     string latitude = 4;
     string longitude = 5;
     string province = 6;
-    string timezone = 7;
-    string code = 8;
+    string country = 7;
+    string timezone = 8;
+    string code = 9;
 }
 
 message AddPortsReq {
@@ -19,6 +20,15 @@ message AddPortsReq {
 
 message EmptyReply {}
 
+message GetPortByCodeReq {
+    string code = 1;
+}
+
+message GetPortByCodeReply {
+    Port port = 1;
+}
+
 service PortDomainService {
-  rpc AddPorts (AddPortsReq) returns (EmptyReply);
+  rpc AddPorts (AddPortsReq) returns (EmptyReply) {}
+  rpc GetPortByCode(GetPortByCodeReq) returns (GetPortByCodeReply) {}
 }

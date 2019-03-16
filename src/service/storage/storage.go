@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"github.com/pkg/errors"
+	"ports/port-domain-svc/src/config"
 	"ports/port-domain-svc/src/service/model"
 	"ports/port-domain-svc/src/service/storage/postgres"
 )
@@ -20,8 +21,12 @@ type Storage struct {
 	db db
 }
 
-func NewStorage(db *sql.DB) *Storage {
-	return &Storage{db: postgres.NewPostgres(db)}
+func NewStorage(cfg config.Postgres) (*Storage, error) {
+	db, dbErr := postgres.NewPostgres(cfg)
+	if dbErr != nil {
+		return nil, dbErr
+	}
+	return &Storage{db: db}, nil
 }
 
 func (s *Storage) Close() error {
