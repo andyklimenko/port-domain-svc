@@ -12,7 +12,7 @@ var ErrNotFound = errors.New("not found")
 
 type db interface {
 	GetPort(ctx context.Context, portCode string) (model.Port, error)
-	AddPort(ctx context.Context, p model.Port) error
+	AddPorts(ctx context.Context, p []model.Port) error
 	Close() error
 }
 
@@ -36,6 +36,6 @@ func (s *Storage) GetPort(ctx context.Context, portCode string) (model.Port, err
 	return p, queryErr
 }
 
-func (s *Storage) AddPort(ctx context.Context, p model.Port) error {
-	return s.db.AddPort(ctx, p)
+func (s *Storage) AddPorts(ctx context.Context, p []model.Port) error {
+	return s.db.AddPorts(ctx, p)
 }

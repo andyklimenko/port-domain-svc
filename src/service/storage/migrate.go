@@ -17,6 +17,7 @@ var migrations = migrate.MemoryMigrationSource{
 					latitude VARCHAR(50) NOT NULL,
 					longitude VARCHAR(50) NOT NULL,
 					province VARCHAR(50) NOT NULL,
+					country VARCHAR(50) NOT NULL,
 					timezone VARCHAR(50) NOT NULL,
 					code VARCHAR(50) NOT NULL
 				);`,

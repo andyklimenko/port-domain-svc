@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package portdomainsvc;
 
-message AddPortReq {
+message Port {
     string portCode = 1;
     string name = 2;
     string city = 3;
@@ -13,8 +13,12 @@ message AddPortReq {
     string code = 8;
 }
 
+message AddPortsReq {
+    repeated Port ports = 1;
+}
+
 message EmptyReply {}
 
 service PortDomainService {
-  rpc AddPort (AddPortReq) returns (EmptyReply);
+  rpc AddPorts (AddPortsReq) returns (EmptyReply);
 }
