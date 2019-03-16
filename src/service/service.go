@@ -2,9 +2,9 @@ package service
 
 import (
 	"context"
-	"ports/port-domain-svc/src/proto"
-	"ports/port-domain-svc/src/service/model"
-	"ports/port-domain-svc/src/service/storage"
+	"port-domain-svc/src/proto"
+	"port-domain-svc/src/service/model"
+	"port-domain-svc/src/service/storage"
 )
 
 type Service struct {

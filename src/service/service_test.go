@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 	"github.com/stretchr/testify/assert"
-	"ports/port-domain-svc/src/proto"
-	"ports/port-domain-svc/src/service/storage"
+	"port-domain-svc/src/proto"
+	"port-domain-svc/src/service/storage"
 	"testing"
 	"time"
 )

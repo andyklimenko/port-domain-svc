@@ -4,9 +4,9 @@ import (
 	"context"
 	"database/sql"
 	"github.com/pkg/errors"
-	"ports/port-domain-svc/src/config"
-	"ports/port-domain-svc/src/service/model"
-	"ports/port-domain-svc/src/service/storage/postgres"
+	"port-domain-svc/src/config"
+	"port-domain-svc/src/service/model"
+	"port-domain-svc/src/service/storage/postgres"
 )
 
 var ErrNotFound = errors.New("not found")

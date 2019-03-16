@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"ports/port-domain-svc/src/service/storage"
-	"ports/port-domain-svc/src/service/storage/postgres"
+	"port-domain-svc/src/service/storage"
+	"port-domain-svc/src/service/storage/postgres"
 )
 
 var (

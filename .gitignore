@@ -12,3 +12,4 @@
 *.out
 
 port-domain-svc
+.idea/*

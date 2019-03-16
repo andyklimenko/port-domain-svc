@@ -1,7 +1,7 @@
 package main
 
 import (
-	"ports/port-domain-svc/src/cmd"
+	"port-domain-svc/src/cmd"
 )
 
 func main() {

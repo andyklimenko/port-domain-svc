@@ -5,8 +5,8 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/lib/pq"
-	"ports/port-domain-svc/src/config"
-	"ports/port-domain-svc/src/service/model"
+	"port-domain-svc/src/config"
+	"port-domain-svc/src/service/model"
 )
 
 type postgres struct {

@@ -7,10 +7,10 @@ import (
 	"net"
 	"os"
 	"os/signal"
-	"ports/port-domain-svc/src/config"
-	"ports/port-domain-svc/src/proto"
-	"ports/port-domain-svc/src/service"
-	"ports/port-domain-svc/src/service/storage"
+	"port-domain-svc/src/config"
+	"port-domain-svc/src/proto"
+	"port-domain-svc/src/service"
+	"port-domain-svc/src/service/storage"
 )
 
 var (
