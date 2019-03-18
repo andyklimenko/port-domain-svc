@@ -18,14 +18,15 @@ RUN go version
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
-# Set environment variables.
-ENV DB_HOST localhost
-ENV DB_USER postgres
-ENV DB_PASSWORD postgres
-ENV DB_NAME postgres
-ENV DB_PORT 5432
+ENV POSTGRES_HOST localhost
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD postgres
+ENV POSTGRES_NAME postgres
+ENV POSTGRES_PORT 5432
 ENV SVC_PORT :50051
 ENV SRC_DIR $GOPATH/src/port-domain-svc
+
+EXPOSE 5432 50051
 
 WORKDIR $SRC_DIR
 

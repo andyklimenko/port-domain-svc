@@ -29,15 +29,15 @@ type Postgres struct {
 }
 
 func (p *Postgres) Load() {
-	viper.SetDefault("db.host", "localhost")
-	viper.SetDefault("db.Port", "5432")
-	viper.SetDefault("db.user", "postgres")
-	viper.SetDefault("db.password", "postgres")
-	viper.SetDefault("db.dbname", "postgres")
+	viper.SetDefault("postgres.host", "localhost")
+	viper.SetDefault("postgres.Port", "5432")
+	viper.SetDefault("postgres.user", "postgres")
+	viper.SetDefault("postgres.password", "postgres")
+	viper.SetDefault("postgres.dbname", "postgres")
 
-	p.Host = viper.GetString("db.host")
-	p.Port = viper.GetInt("db.Port")
-	p.User = viper.GetString("db.user")
-	p.Password = viper.GetString("db.password")
-	p.DbName = viper.GetString("db.dbname")
+	p.Host = viper.GetString("postgres.host")
+	p.Port = viper.GetInt("postgres.Port")
+	p.User = viper.GetString("postgres.user")
+	p.Password = viper.GetString("postgres.password")
+	p.DbName = viper.GetString("postgres.dbname")
 }

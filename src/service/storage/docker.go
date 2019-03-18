@@ -30,20 +30,19 @@ func NewDockerStorage() (*Storage, func(), error) {
 
 		cfg.Host = splitted[0]
 		cfg.Port = port
-		db, err := postgres.Connect(cfg)
-		if err != nil {
-			return err
+		if _, connectErr := postgres.Connect(cfg); connectErr != nil {
+			return connectErr
 		}
 
-		return db.Ping()
+		return nil
 	})
 	if runErr != nil {
 		return nil, func() {}, runErr
 	}
 
-	db, openErr := postgres.Connect(cfg)
-	if openErr != nil {
-		return nil, func() {}, openErr
+	db, connectErr := postgres.Connect(cfg)
+	if connectErr != nil {
+		return nil, func() {}, connectErr
 	}
 
 	if migrateErr := MigrateUp(db); migrateErr != nil {

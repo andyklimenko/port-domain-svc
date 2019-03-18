@@ -23,7 +23,16 @@ func NewPostgres(cfg config.Postgres) (*postgres, error) {
 
 func Connect(cfg config.Postgres) (*sql.DB, error) {
 	url := fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable", cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.DbName)
-	return sql.Open("postgres", url)
+	db, openErr := sql.Open("postgres", url)
+	if openErr != nil {
+		return nil, openErr
+	}
+
+	if pingErr := db.Ping(); pingErr != nil {
+		return nil, pingErr
+	}
+
+	return db, nil
 }
 
 func (p *postgres) GetPort(ctx context.Context, portCode string) (model.Port, error) {

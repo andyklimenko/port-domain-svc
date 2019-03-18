@@ -7,11 +7,11 @@ import (
 )
 
 func TestLoadConfigFromEnv(t *testing.T) {
-	assert.NoError(t, os.Setenv("DB_HOST", "test-host"))
-	assert.NoError(t, os.Setenv("DB_PORT", "1234"))
-	assert.NoError(t, os.Setenv("DB_USER", "user"))
-	assert.NoError(t, os.Setenv("DB_PASSWORD", "pwd"))
-	assert.NoError(t, os.Setenv("DB_DBNAME", "test-db"))
+	assert.NoError(t, os.Setenv("POSTGRES_HOST", "test-host"))
+	assert.NoError(t, os.Setenv("POSTGRES_PORT", "1234"))
+	assert.NoError(t, os.Setenv("POSTGRES_USER", "user"))
+	assert.NoError(t, os.Setenv("POSTGRES_PASSWORD", "pwd"))
+	assert.NoError(t, os.Setenv("POSTGRES_DBNAME", "test-db"))
 
 	cfg := Config{}
 	cfg.Load()
